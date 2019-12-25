@@ -58,9 +58,10 @@ button {
     padding-top: 3px;
     padding-bottom: 3px;
     box-sizing: border-box;
+    cursor: pointer;
 }
 
-input {
+input, textarea {
     box-shadow: 2px 2px 0px 0px var(--drop-shadow);
     background-clip: padding-box;
     border: 1px solid black;
@@ -231,13 +232,15 @@ form.div {
     display: block;
 }
 
-form.newline > input, form.newline > button, form.newline > label {
+form.newline > input, form.newline > button, form.newline > label,
+form.newline > textarea {
     margin-top: 7px;
     float: none;
     display: block;
+    resize: none;
 }
 
-.full > input, .full > button {
+.full > input, .full > button, .full > textarea {
     width: 100%;
 }
 
@@ -378,6 +381,10 @@ div[class^="box-"] {
 
 .green {
     background-color: var(--title-green) !important;
+}
+
+.clickable {
+    cursor: pointer;
 }
 
 /* ======== TABLE ======== */

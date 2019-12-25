@@ -1,0 +1,11 @@
+PUT http://localhost:1234/api/articles/ HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+    "caption": "Test API",
+    "description": "ABCD",
+    "quantity": 2,
+    "gtin": "123456",
+    "storage": "A"
+}

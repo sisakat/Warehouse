@@ -31,3 +31,31 @@ function populateStorages(data) {
         }
     });
 }
+
+function putArticle(article) {
+    $.ajax({
+        url: '/api/articles/',
+        type: 'PUT',
+        data: article,
+        success: function(result) {
+            setup();
+        }
+    }).fail(function() {
+        setup();
+        alert('Could not insert article');
+    });
+}
+
+function deleteArticle(id) {
+    let url = '/api/articles/' + id;
+    $.ajax({
+        url: url,
+        type: 'DELETE',
+        success: function(result) {
+            setup();
+        }
+    }).fail(function() {
+        setup();
+        alert('Could not delete article');
+    });
+}

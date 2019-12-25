@@ -34,10 +34,33 @@ class ArticleDAO {
 
     }
 
+    put(article) {
+        let query = "INSERT INTO Article (" +
+            "caption, description, quantity, gtin, storage" +
+            ") VALUES (" +
+            "$caption, $description, $quantity, $gtin, $storage" +
+            ")";
+        let params = {
+            $caption: article.caption,
+            $description: article.description,
+            $quantity: article.quantity,
+            $gtin: article.gtin,
+            $storage: article.storage
+        };
+
+        return this._mainDAO.run(query, params);
+    }
+
+    delete(id) {
+        let query = "DELETE FROM Article WHERE article_id = $id";
+        let params = {$id: id};
+        return this._mainDAO.run(query, params);
+    }
+
     createArticle(row) {
         return new Article(row.article_id,
             row.caption,
-            row.caption,
+            row.description,
             row.creation_date,
             row.quantity,
             row.gtin,

@@ -22,6 +22,19 @@ class ArticleController {
             .then(this._mainController.findSuccess(res))
             .catch(this._mainController.findError(res));
     }
+
+    put(req, res) {
+        let article = req.body;
+        this._articleDao.put(article)
+            .then(this._mainController.findSuccess(res))
+            .catch(this._mainController.findError(res));
+    }
+
+    delete(req, res) {
+        this._articleDao.delete(req.params.id)
+            .then(this._mainController.findSuccess(res))
+            .catch(this._mainController.findError(res));
+    }
 }
 
 module.exports = ArticleController;

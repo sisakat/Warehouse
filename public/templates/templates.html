@@ -3,56 +3,35 @@
         <p>This is your personal Warehouse. You can add or remove goods from your warehouse by clicking on the
             corresponding buttons.</p>
         <div class="flex row wrap">
-            <div class="control">
-                <div class="title">
-                    Add / Remove
-                </div>
-                <div class="content">
-                    <form class="newline full">
-                        <label for="id">Number</label>
-                        <input type="number" min="0" required name="id" />
-
-                        <label for="gtin">GTIN</label>
-                        <input type="text" maxlength="14" name="gtin" />
-
-                        <label for="qty">Quantity</label>
-                        <input type="number" min="1" max="10" name="qty" value="1" required />
-
-                        <div class="flex row wrap">
-                            <button class="flexauto textcenter" type="submit" value="minus">-</button>
-                            <button class="flexauto textcenter" type="submit" value="plus">+</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="control">
-                <div class="title">
+            <div class="control collapsible">
+                <div class="title clickable">
                     Add new
                 </div>
-                <div class="content">
-                    <div class="content">
-                        <form class="newline full">
-                            <label for="caption">Caption</label>
-                            <input type="text" name="caption" required />
+                <div class="content" style="display: none">
+                    <form id="form-new-article" class="newline full">
+                        <label for="caption">Caption</label>
+                        <input type="text" name="caption" required />
 
-                            <label for="gtin">GTIN</label>
-                            <input type="text" name="gtin" />
+                        <label for="description">Description</label>
+                        <textarea name="description"></textarea>
 
-                            <label for="qty">Quantity</label>
-                            <input type="number" min="1" max="10" value="1" required name="qty" />
+                        <label for="gtin">GTIN</label>
+                        <input type="text" name="gtin" />
 
-                            <label for="qty">Area</label>
-                            <input type="number" min="1" max="10" value="1" required name="qty" />
+                        <label for="quantity">Quantity</label>
+                        <input type="number" min="1" max="200" value="1" required name="quantity" />
 
-                            <button class="flexauto textcenter" type="submit" value="plus">Add</button>
-                        </form>
-                    </div>
+                        <label for="storage">Storage</label>
+                        <input type="text" value="A" required name="storage" />
+
+                        <button class="flexauto textcenter" value="add">Add</button>
+                    </form>
                 </div>
             </div>
         </div>
         <div class="flex row wrap">
-            <div class="control">
-                <div class="title">
+            <div class="control collapsible">
+                <div class="title clickable">
                     <div class="container">
                         <span class="left">Stock</span>
                         <form class="right">
@@ -74,11 +53,25 @@
 <script id="template-reports" type="text/html">
     <h1>Reports</h1>
     <p>Here you can view and generate statistics about your warehouse.</p>
+
+    <div class="flex wrap row">
+        <div class="control">
+            <div class="title">
+                History
+            </div>
+            <div id="historyItems" class="content">
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="template-history-item" type="text/html">
+    <p>{{article_id}} {{creation_date}} {{quantity}}</p>
 </script>
 
 <script id="template-storage" type="text/html">
     <div id="storage-{{storage}}" class="storage">
-        <div class="title green">
+        <div class="title">
             {{storage}}
         </div>
         <div class="content">
@@ -89,9 +82,16 @@
 <script id="template-article" type="text/html">
     <div class="article">
         <div>
-            {{caption}}
+            <div class="left" style="vertical-align: center; text-align: right; width: 50px; margin-right: 10px; margin-top: 5px;">
+                <span style="font-size: 1.5em">{{quantity}}</span>
+            </div>
+            <div class="left">
+                {{caption}}<br /><span style="font-size: 0.75em">{{description}}</span>
+            </div>
         </div>
-        <button>Open</button>
-        <button>Delete</button>
+        <button onclick="deleteArticle('{{articleId}}')" style="margin-right: 5px" class="red">Delete</button>
+        <button onclick="openArticle('{{articleId}}')" style="margin-right: 5px" class="green">Open</button>
+        <button onclick="changeArticleQuantity('{{articleId}}', 1)" style="margin-right: 5px">+</button>
+        <button onclick="changeArticleQuantity('{{articleId}}', -1)" style="margin-right: 5px">-</button>
     </div>
 </script>

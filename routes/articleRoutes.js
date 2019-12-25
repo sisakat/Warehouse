@@ -13,4 +13,12 @@ router.get('/:id(\\d+)', function(req, res) {
     articleController.getById(req, res);
 });
 
+router.put('/', function(req, res) {
+    articleController.put(req, res);
+});
+
+router.delete('/:id(\\d+)', function(req, res) {
+    articleController.delete(req, res);
+});
+
 module.exports = router;
