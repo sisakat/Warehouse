@@ -1,0 +1,409 @@
+/* ======== FONTS ======== */
+@font-face {
+    font-family: "pixelmix";
+    src: url("../fonts/pixelmix.ttf");
+}
+
+@font-face {
+    font-family: "Pixellari";
+    src: url("../fonts/Pixellari.ttf");
+    font-weight: bold;
+}
+
+/* ======== Main Styles ======== */
+:root {
+    --bg-color: #7d929e;
+    --control-color: #d3cbbe;
+    --accent-color: #c6c6c6;
+    --drop-shadow: rgba(149,129,116,1);
+    --highlight-color: #8385cf;
+    --title-red: #9e7d7d;
+    --title-green: #7d9e83;
+}
+
+* {
+    font-family: pixelmix, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 0;
+}
+
+header, nav, footer {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    margin: 10px;
+}
+
+h1, h2, h3, h4, h5, h6, h7 {
+    font-family: Pixellari, Arial, sans-serif;
+    margin: 10px;
+}
+
+a {
+    cursor: pointer;
+}
+
+/* ======== Input elements ======== */
+button {
+    box-shadow: 2px 2px 0px 0px var(--drop-shadow);
+    background-color: var(--accent-color);
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    box-sizing: border-box;
+}
+
+input {
+    box-shadow: 2px 2px 0px 0px var(--drop-shadow);
+    background-clip: padding-box;
+    border: 1px solid black;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+/* ======== Header ======== */
+header {
+    background-color: var(--control-color);
+    padding: 10px;
+    overflow: hidden;
+    box-shadow: 2px 2px 0px 0px var(--drop-shadow);
+    border-bottom: 2px solid black;
+}
+
+header > .logo {
+    float: left;
+    padding: 8px;
+}
+
+@media screen and (max-width: 900px) {
+    header > .logo {
+        float: none;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* ======== Navigation ======== */
+nav {
+    float: left;
+    display: block;
+}
+
+nav > ul {
+    list-style-type: none;
+    display: block;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+nav > ul.right {
+    position: absolute;
+    right: 0px;
+}
+
+nav > ul > li {
+    float: left;
+}
+
+nav > ul > li a {
+    color: black;
+    display: block;
+    text-align: center;
+    padding: 5px;
+    margin: 11px;
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+    transition-property: all;
+    transition-duration: .5s;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+nav > ul > li a:hover {
+    color: var(--highlight-color);
+    filter: invert(54%) sepia(33%) saturate(620%) hue-rotate(200deg) brightness(95%) contrast(84%);
+}
+
+@media screen and (max-width: 900px) {
+    nav {
+        float: none;
+    }
+
+    nav > ul {
+        width: max-content;
+        margin: 0 auto;
+    }
+
+    nav > ul > li {
+        float: none;
+    }
+
+    nav > ul.left {
+        float: none;
+    }
+
+    nav > ul.right {
+        position: unset;
+        right: unset;
+        float: none;
+    }
+}
+
+nav a.warehouse {
+    background: url('../images/warehouse.svg') no-repeat left center;
+    padding-left: 32px;
+}
+
+nav a.report {
+    background: url('../images/report.svg') no-repeat left center;
+    padding-left: 32px;
+}
+
+nav a.settings {
+    background: url('../images/settings.svg') no-repeat left center;
+    padding-left: 32px;
+}
+
+nav a.logout {
+    background: url('../images/logout.svg') no-repeat left center;
+    padding-left: 32px;
+}
+
+/* ======== Main ======== */
+
+main {
+    width: 90%;
+    padding: 15px;
+    border: 2px solid black;
+    box-shadow: 2px 2px 0px 0px var(--drop-shadow);
+    margin: 0 auto;
+    background-color: var(--control-color);
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+main.login {
+    width: max-content;
+    padding: 15px;
+    margin: 0 auto;
+    margin-top: 10px;
+    padding-bottom: 30px;
+}
+
+@media screen and (max-width: 900px) {
+    main {
+        width: unset;
+        margin-top: 0;
+        border-left: none;
+        border-right: none;
+        border-bottom: 2px solid black;
+    }
+
+    main.login {
+        width: unset;
+        margin-top: 0;
+        border-left: none;
+        border-right: none;
+        border-bottom: 2px solid black;
+        padding-bottom: 30px;
+    }
+}
+
+/* ======== Footer ======== */
+footer {
+    margin: 0 auto;
+    text-align: center;
+    font-size: .8em;
+    opacity: .5;
+}
+
+/* ======== Forms ======== */
+form.div {
+    margin-top: 7px;
+    float: none;
+    display: block;
+}
+
+form.newline > input, form.newline > button, form.newline > label {
+    margin-top: 7px;
+    float: none;
+    display: block;
+}
+
+.full > input, .full > button {
+    width: 100%;
+}
+
+/* ======== Box models ======== */
+div[class^="box-"] {
+    float: left;
+    overflow: hidden;
+    box-sizing: border-box;
+    height: fit-content;
+}
+
+.box-2 {
+    width: 50%;
+}
+
+.box-3 {
+    width: 33.3%;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex > button {
+    margin: 5px;
+}
+
+.row {
+    flex-direction: row;
+}
+
+.row-reverse {
+    flex-direction: row-reverse;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.flexauto {
+    flex: auto;
+}
+
+.control {
+    background-color: var(--control-color);
+    box-shadow: 2px 2px 0px 0px var(--drop-shadow);
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 10px;
+    flex: auto;
+}
+
+.control > .title {
+    color: white;
+    background-color: var(--bg-color);
+    padding: 7px;
+    border-bottom: 1px solid black;
+}
+
+.control > .content {
+    padding: 7px;
+}
+
+.control > .content > p {
+    margin: 0;
+    padding: 0;
+}
+
+.storage {
+    background-color: var(--control-color);
+    box-shadow: 2px 2px 0px 0px var(--drop-shadow);
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 10px;
+    flex: auto;
+}
+
+.storage > .title {
+    color: white;
+    background-color: var(--bg-color);
+    padding: 7px;
+}
+
+.storage > .content {
+    padding: 7px;
+    overflow: hidden;
+}
+
+.storage > .content > p {
+    margin: 0;
+    padding: 0;
+}
+
+/* ======== Article ======== */
+.article {
+    width: 100%;
+    display: block;
+    clear: both;
+    padding: 5px;
+}
+
+.article > div {
+    float: left;
+}
+
+.article > button {
+    float: right;
+}
+
+/* ======== Miscellanious ======== */
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+.fill {
+    width: 100%;
+}
+
+.textcenter {
+    text-align: center;
+}
+
+.container  {
+    overflow: hidden;
+}
+
+.red {
+    background-color: var(--title-red) !important;
+}
+
+.green {
+    background-color: var(--title-green) !important;
+}
+
+/* ======== TABLE ======== */
+.rTable {
+    display: block;
+}
+.rTableHeading, .rTableBody, .rTableFoot, .rTableRow{
+    clear: both;
+}
+.rTableHead, .rTableFoot{
+    background-color: #DDD;
+    font-weight: bold;
+}
+.rTableCell, .rTableHead {
+    border: 1px solid #999999;
+    float: left;
+    height: 17px;
+    overflow: hidden;
+    padding: 3px 1.8%;
+    width: 45%;
+}
+.rTable:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+}
