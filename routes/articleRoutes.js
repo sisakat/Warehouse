@@ -9,7 +9,7 @@ router.get('/', function(req, res) {
     articleController.get(req, res);
 });
 
-router.get('/:id', function(req, res) {
+router.get('/:id(\\d+)', function(req, res) {
     articleController.getById(req, res);
 });
 

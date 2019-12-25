@@ -5,11 +5,11 @@ const router = express.Router();
 const ArticleChangeController = require("../controllers/articleChangeController");
 const articleChangeController = new ArticleChangeController();
 
-router.get('/', function(req, res) {
+router.get('/changes', function(req, res) {
     articleChangeController.get(req, res);
 });
 
-router.get('/:id', function(req, res) {
+router.get('/:id(\\d+)/changes', function(req, res) {
     articleChangeController.getByArticle(req, res);
 });
 

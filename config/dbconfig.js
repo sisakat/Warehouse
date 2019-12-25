@@ -7,7 +7,7 @@ let init = function() {
         "article_id INTEGER PRIMARY KEY AUTOINCREMENT," +
         "caption TEXT," +
         "description TEXT," +
-        "creation_date DATE," +
+        "creation_date DATETIME DEFAULT CURRENT_TIMESTAMP, " +
         "quantity INT," +
         "gtin TEXT," +
         "storage TEXT" +
@@ -21,8 +21,8 @@ let init = function() {
         "FOREIGN KEY (article_id) REFERENCES Article (article_id)" +
         ")");
 
-    //db.run("INSERT INTO Article (caption, description, creation_date, quantity, gtin, storage) "+
-    //" values ('Test2', 'test2', '2019-12-23', 5, '123456', 'A') ");
+    //db.run("INSERT INTO Article (caption, description, quantity, gtin, storage) "+
+    //" values ('Test2', 'test2', 5, '123456', 'A') ");
 
     //db.run("INSERT INTO ArticleChange (article_id, quantity) values (1, -3)");
 };
