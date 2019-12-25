@@ -61,7 +61,7 @@ button {
     cursor: pointer;
 }
 
-input, textarea {
+input, textarea, select {
     box-shadow: 2px 2px 0px 0px var(--drop-shadow);
     background-clip: padding-box;
     border: 1px solid black;
@@ -233,14 +233,14 @@ form.div {
 }
 
 form.newline > input, form.newline > button, form.newline > label,
-form.newline > textarea {
+form.newline > textarea, form.newline > select {
     margin-top: 7px;
     float: none;
     display: block;
     resize: none;
 }
 
-.full > input, .full > button, .full > textarea {
+.full > input, .full > button, .full > textarea, .full > select {
     width: 100%;
 }
 
@@ -313,6 +313,13 @@ div[class^="box-"] {
     padding: 0;
 }
 
+.control h1, .control h2, .control h3, .control h4 {
+    margin: 0;
+    padding: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 .storage {
     background-color: var(--control-color);
     box-shadow: 2px 2px 0px 0px var(--drop-shadow);
@@ -363,6 +370,10 @@ div[class^="box-"] {
     float: left;
 }
 
+.marright {
+    margin-right: 20px;
+}
+
 .fill {
     width: 100%;
 }
@@ -381,6 +392,11 @@ div[class^="box-"] {
 
 .green {
     background-color: var(--title-green) !important;
+}
+
+.transparent {
+    background-color: transparent !important;
+    color: black !important;
 }
 
 .clickable {

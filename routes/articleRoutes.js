@@ -21,4 +21,8 @@ router.delete('/:id(\\d+)', function(req, res) {
     articleController.delete(req, res);
 });
 
+router.post('/:id(\\d+)', function(req, res) {
+    articleController.post(req, res);
+});
+
 module.exports = router;

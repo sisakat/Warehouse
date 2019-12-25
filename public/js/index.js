@@ -1,9 +1,14 @@
+var previous_page = "";
 var page = "index";
 var first_load = true;
 
 $(document).ready(function () {
-    setup();
-    setupPageChangers();
+    getArticleTypes(function(types) {
+        articleTypes = types;
+            
+        setup();
+        setupPageChangers();
+    });
 });
 
 function setupCollapsible() {
@@ -22,19 +27,23 @@ function setupPageChangers() {
     });
 }
 
-function changePage(newpage) {
+function changePage(newpage, param = null) {
+    previous_page = page;
     page = newpage;
     first_load = true;
-    setup();
+    setup(param);
 }
 
-function setup() {
+function setup(param) {
     switch (page) {
         case "index":
             loadIndex();
             break;
         case "reports":
             loadReports();
+            break;
+        case "detail":
+            openArticle(param);
             break;
     }
     first_load = false;
@@ -46,6 +55,7 @@ function loadIndex() {
             $('main').html(indexTemplate);
             registerIndexActions();
             setupCollapsible();
+            fillArticleTypes();
         });
     }
     loadArticles();

@@ -5,7 +5,8 @@ class Article {
             creationDate, 
             quantity, 
             gtin, 
-            storage) {
+            storage,
+            type_id) {
         this.articleId = articleId;
         this.caption = caption;
         this.description = description;
@@ -13,6 +14,8 @@ class Article {
         this.quantity = quantity;
         this.gtin = gtin;
         this.storage = storage;
+        this.type_id = type_id;
+        this.type_caption = "";
     }
 }
 

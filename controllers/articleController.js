@@ -35,6 +35,13 @@ class ArticleController {
             .then(this._mainController.findSuccess(res))
             .catch(this._mainController.findError(res));
     }
+
+    post(req, res) {
+        let article = req.body;
+        this._articleDao.post(article)
+            .then(this._mainController.findSuccess(res))
+            .catch(this._mainController.findError(res));
+    }
 }
 
 module.exports = ArticleController;

@@ -3,6 +3,18 @@ let sqlite3 = require('sqlite3').verbose();
 let db = new sqlite3.Database('./warehouse.db');
 
 let init = function() {
+    db.run("DROP TABLE IF EXISTS ArticleType", function(err) {
+        db.run("CREATE TABLE IF NOT EXISTS ArticleType (" +
+        "type_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+        "caption TEXT," +
+        "image TEXT" +
+        ")", function(err) {
+            db.run("INSERT INTO ArticleType (caption, image) VALUES ('Sweets', 'type_sweets.svg')");
+            db.run("INSERT INTO ArticleType (caption, image) VALUES ('Cereal', 'type_cereal.svg')");
+            db.run("INSERT INTO ArticleType (caption, image) VALUES ('Grain', 'type_grain.svg')");
+        });
+    });
+
     db.run("CREATE TABLE IF NOT EXISTS Article (" +
         "article_id INTEGER PRIMARY KEY AUTOINCREMENT," +
         "caption TEXT," +
@@ -10,7 +22,8 @@ let init = function() {
         "creation_date DATETIME DEFAULT CURRENT_TIMESTAMP, " +
         "quantity INT," +
         "gtin TEXT," +
-        "storage TEXT" +
+        "storage TEXT, " +
+        "type_id INT" +
         ")");
 
     db.run("CREATE TABLE IF NOT EXISTS ArticleChange (" +

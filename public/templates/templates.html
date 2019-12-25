@@ -15,12 +15,16 @@
                         <label for="description">Description</label>
                         <textarea name="description"></textarea>
 
+                        <label for="type_id">Type</label>
+                        <select class="types" name="type_id">
+                        </select>
+
                         <label for="gtin">GTIN</label>
                         <input type="text" name="gtin" />
 
                         <label for="quantity">Quantity</label>
                         <input type="number" min="1" max="200" value="1" required name="quantity" />
-
+                        
                         <label for="storage">Storage</label>
                         <input type="text" value="A" required name="storage" />
 
@@ -48,6 +52,78 @@
                 </div>
             </div>
         </div>
+</script>
+
+<script id="template-article-detail" type="text/html">
+    <a onclick="changePage(previous_page)">< Back</a>
+    <div class="flex row wrap">
+        <div class="control">
+            <div class="title">
+                Selected article
+            </div>
+            <div class="content flex column">
+                <div class="control flexauto">
+                    <div class="content">
+                        <div class="left">
+                            {{storage}}<br /><strong style="font-size: 1.5em">{{caption}}</strong>
+                        </div>
+                        <div class="right">
+                            Qty: <strong style="font-size: 1.5em">{{quantity}}</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="control flexauto">
+                    <div class="title transparent">
+                        Details
+                    </div>
+                    <div class="content">
+                        <div class="left marright">
+                            <h2>Description</h2>
+                            <p>{{description}}</p>
+                        </div>
+                        <div class="left marright">
+                            <h2>Type:</h2>
+                            <p>{{type_caption}}</p>
+                        </div>
+                        <div class="left marright">
+                            <h2>GTIN / EAN:</h2>
+                            <p>{{gtin}}</p>
+                        </div>
+                        <div class="left marright">
+                            <h2>Created:</h2>
+                            <p>{{creationDate}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="control">
+            <div class="title">
+                Change article
+            </div>
+            <div class="content">
+                <form id="form-article-detail" class="newline full">
+                    <input type="hidden" name="articleId" value="{{articleId}}" />
+                    <label for="caption">Caption</label>
+                    <input type="text" name="caption" value="{{caption}}" required />
+            
+                    <label for="description">Description</label>
+                    <textarea name="description">{{description}}</textarea>
+            
+                    <label for="gtin">GTIN</label>
+                    <input type="text" name="gtin" value="{{gtin}}" />
+            
+                    <label for="quantity">Quantity</label>
+                    <input type="number" min="1" max="200" value="{{quantity}}" required name="quantity" />
+            
+                    <label for="storage">Storage</label>
+                    <input type="text" value="A" required name="storage" value="{{storage}}" />
+            
+                    <button type="submit" class="flexauto textcenter" value="save">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </script>
 
 <script id="template-reports" type="text/html">
@@ -83,14 +159,14 @@
     <div class="article">
         <div>
             <div class="left" style="vertical-align: center; text-align: right; width: 50px; margin-right: 10px; margin-top: 5px;">
-                <span style="font-size: 1.5em">{{quantity}}</span>
+                <span id="article-{{articleId}}-qty" style="font-size: 1.5em">{{quantity}}</span>
             </div>
             <div class="left">
                 {{caption}}<br /><span style="font-size: 0.75em">{{description}}</span>
             </div>
         </div>
         <button onclick="deleteArticle('{{articleId}}')" style="margin-right: 5px" class="red">Delete</button>
-        <button onclick="openArticle('{{articleId}}')" style="margin-right: 5px" class="green">Open</button>
+        <button onclick="changePage('detail', '{{articleId}}')" style="margin-right: 5px" class="green">Open</button>
         <button onclick="changeArticleQuantity('{{articleId}}', 1)" style="margin-right: 5px">+</button>
         <button onclick="changeArticleQuantity('{{articleId}}', -1)" style="margin-right: 5px">-</button>
     </div>
