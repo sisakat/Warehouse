@@ -15,6 +15,7 @@ function detailArticleRetrieved(data) {
     getTemplate('template-article-detail', function (detailTemplate) {
         $('main').html(Mustache.render(detailTemplate, data));
         registerDetailActions();
+        fillArticleTypes();
     });
 }
 

@@ -9,10 +9,10 @@ class ArticleDAO {
     }
 
     get() {
-        let query = "SELECT *, " +
-            "(select caption from ArticleType where type_id = type_id) type_caption " +
-            "FROM Article";
-            
+        let query = "SELECT a.*, " +
+            "(select caption from ArticleType where type_id = a.type_id) type_caption " +
+            "FROM Article a";
+
         return this._mainDAO.all(query).then(rows => {
             let articles = [];
             for (const row of rows) {
@@ -31,8 +31,8 @@ class ArticleDAO {
                         "gtin," +
                         "storage," +
                         "type_id," +
-                        "(select caption from ArticleType where type_id = type_id) type_caption " +
-                        "FROM Article WHERE article_id = $id";
+                        "(select caption from ArticleType where type_id = a.type_id) type_caption " +
+                        "FROM Article a WHERE article_id = $id";
         let params = {$id: id};
         return this._mainDAO.first(query, params).then(row =>
             this.createArticle(row));
