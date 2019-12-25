@@ -13,8 +13,18 @@ let init = function() {
         "storage TEXT" +
         ")");
 
+    db.run("CREATE TABLE IF NOT EXISTS ArticleChange (" +
+        "articlechange_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+        "article_id INTEGER NOT NULL, " +
+        "creation_date DATETIME DEFAULT CURRENT_TIMESTAMP, " +
+        "quantity INT NOT NULL, " +
+        "FOREIGN KEY (article_id) REFERENCES Article (article_id)" +
+        ")");
+
     //db.run("INSERT INTO Article (caption, description, creation_date, quantity, gtin, storage) "+
     //" values ('Test2', 'test2', '2019-12-23', 5, '123456', 'A') ");
+
+    //db.run("INSERT INTO ArticleChange (article_id, quantity) values (1, -3)");
 };
 
 module.exports = {

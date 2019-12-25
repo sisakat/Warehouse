@@ -9,7 +9,26 @@ class MainDAO {
                     reject(
                         new DbError(20, "Internal Server Error")
                     );
-                } else if (rows === null ||rows.length === 0) {
+                } else if (rows === null || rows.length === 0) {
+                    reject(
+                        new DbError(21, "Entity not found")
+                    );
+                } else {
+                    resolve(rows);
+                }
+            })
+        });
+    }
+
+    all(query, params) {
+        return new Promise(function (resolve, reject) {
+            let statement = database.db.prepare(query);
+            statement.all(params, function (err, rows) {
+                if (err) {
+                    reject(
+                        new DbError(20, "Internal Server Error")
+                    );
+                } else if (rows === null || rows.length === 0) {
                     reject(
                         new DbError(21, "Entity not found")
                     );
