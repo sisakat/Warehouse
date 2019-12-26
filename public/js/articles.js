@@ -13,9 +13,11 @@ function articlesRetrieved(data) {
 
 function detailArticleRetrieved(data) {
     getTemplate('template-article-detail', function (detailTemplate) {
+        type = getArticleType(data.type_id);
+        data.type_image = type.image;
         $('main').html(Mustache.render(detailTemplate, data));
         registerDetailActions();
-        fillArticleTypes();
+        fillArticleTypes(data.type_id);
     });
 }
 
@@ -39,6 +41,7 @@ function populateStorages(data) {
             $('#storage-' + data[i].storage + ' > .content').empty();
         }
         for (let i = 0; i < data.length; i++) {
+            data[i].type_image = getArticleType(data[i].type_id).image;
             $('#storage-' + data[i].storage + ' > .content').append(Mustache.render(articleTemplate, data[i]));
         }
     });
@@ -110,7 +113,7 @@ function changeArticleQuantity(id, qty) {
     $.getJSON("/api/articles/" + id, function(data) {
         data.quantity += Number(qty);
         postArticle(data, false);
-        $("#article-" + id + "-qty").html(data.quantity);
+        $("#article-qty-" + id).html(data.quantity);
     });
 }
 
@@ -120,10 +123,22 @@ function getArticleTypes(callback) {
     });
 }
 
-function fillArticleTypes() {
+function getArticleType(type_id) {
+    for(let i = 0; i < articleTypes.length; i++) {
+        if (articleTypes[i].type_id === type_id) {
+            return articleTypes[i];
+        }
+    }
+}
+
+function fillArticleTypes(selected = null) {
     $('select.types').each(function() {
         for(let i = 0; i < articleTypes.length; i++) {
-            $(this).append('<option value="' + articleTypes[i].type_id + '">' + articleTypes[i].caption + '</option>');
+            if (articleTypes[i].type_id === selected) {
+                $(this).append('<option selected value="' + articleTypes[i].type_id + '">' + articleTypes[i].caption + '</option>');
+            } else {
+                $(this).append('<option value="' + articleTypes[i].type_id + '">' + articleTypes[i].caption + '</option>');
+            }
         }
     });
 }

@@ -198,6 +198,18 @@ main.login {
     padding-bottom: 30px;
 }
 
+.qty-box {
+    vertical-align: center; 
+    text-align: right; 
+    width: 50px; 
+    margin-right: 10px; 
+    margin-top: 5px;
+}
+
+[id^="article-qty"] {
+    font-size: 1.5em;
+}
+
 @media screen and (max-width: 900px) {
     main {
         width: unset;
@@ -214,6 +226,40 @@ main.login {
         border-right: none;
         border-bottom: 2px solid black;
         padding-bottom: 30px;
+    }
+
+    #deleteButton {
+        display: none;
+    }
+
+    #openButton {
+        display: none;
+    }
+
+    [id^="article-qty"] {
+        font-size: 1.0em;
+    }
+
+    .qty-box {
+        vertical-align: center; 
+        text-align: right; 
+        width: auto; 
+        margin-right: 3px; 
+        margin-top: 10px;
+    }
+
+    .cut-text { 
+        text-overflow: ellipsis;
+        overflow: hidden; 
+        width: 200px;
+        height: 1.2em; 
+        white-space: nowrap;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .cut-text { 
+        width: 150px;
     }
 }
 
@@ -353,12 +399,27 @@ div[class^="box-"] {
     padding: 5px;
 }
 
-.article > div {
+.article > .details {
     float: left;
 }
 
-.article > button {
+.article > .details div {
+    float: left;
+}
+
+.article > .buttons {
     float: right;
+}
+
+.article > .buttons > button {
+    float: right;
+    margin-right: 5px;
+}
+
+@media screen and (max-width: 900px) {
+    .article > .details * {
+        float: none;
+    }
 }
 
 /* ======== Miscellanious ======== */
@@ -372,6 +433,10 @@ div[class^="box-"] {
 
 .marright {
     margin-right: 20px;
+}
+
+.padd10 {
+    padding: 10px;
 }
 
 .fill {
@@ -401,6 +466,10 @@ div[class^="box-"] {
 
 .clickable {
     cursor: pointer;
+}
+
+.disable-dbl-tap-zoom {
+    touch-action: manipulation;
 }
 
 /* ======== TABLE ======== */

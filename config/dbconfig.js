@@ -9,9 +9,13 @@ let init = function() {
         "caption TEXT," +
         "image TEXT" +
         ")", function(err) {
-            db.run("INSERT INTO ArticleType (caption, image) VALUES ('Sweets', 'type_sweets.svg')");
-            db.run("INSERT INTO ArticleType (caption, image) VALUES ('Cereal', 'type_cereal.svg')");
-            db.run("INSERT INTO ArticleType (caption, image) VALUES ('Grain', 'type_grain.svg')");
+            db.run("INSERT INTO ArticleType (caption, image) VALUES ('Sweets', 'types_sweets.svg')");
+            db.run("INSERT INTO ArticleType (caption, image) VALUES ('Cereal', 'types_cereal.svg')");
+            db.run("INSERT INTO ArticleType (caption, image) VALUES ('Grain', 'types_grain.svg')");
+            db.run("INSERT INTO ArticleType (caption, image) VALUES ('Technology', 'types_technology.svg')");
+            db.run("INSERT INTO ArticleType (caption, image) VALUES ('Tools', 'types_tools.svg')");
+            db.run("INSERT INTO ArticleType (caption, image) VALUES ('Vegetables', 'types_vegetables.svg')");
+            db.run("INSERT INTO ArticleType (caption, image) VALUES ('Household', 'types_household.svg')");
         });
     });
 
