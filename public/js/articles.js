@@ -1,3 +1,9 @@
+/* **************************************
+    Article JS file
+    Loads all the articles and controls
+    the article detail-page.
+***************************************** */
+
 function loadArticles() {
     $.getJSON("/api/articles", articlesRetrieved);
 }
@@ -48,6 +54,9 @@ function populateStorages(data) {
     });
 }
 
+/*
+    Call PUT method from api to insert new article
+*/
 function putArticle(article) {
     $.ajax({
         url: '/api/articles/',
@@ -62,6 +71,9 @@ function putArticle(article) {
     });
 }
 
+/*
+    Call DELETE method from api to delete article
+*/
 function deleteArticle(id) {
     if (confirm("Are you sure you want to delete this article?")) {
         let url = '/api/articles/' + id;
@@ -78,6 +90,9 @@ function deleteArticle(id) {
     }
 }
 
+/*
+    Call POST method from api to update article
+*/
 function postArticle(article, returnToIndex = true) {
     let url = '/api/articles/' + article.articleId;
     $.ajax({
