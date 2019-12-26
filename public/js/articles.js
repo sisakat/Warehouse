@@ -28,6 +28,7 @@ function createStorages(data) {
     getTemplate('template-storage', function (storageTemplate) {
         for (let i = 0; i < data.length; i++) {
             if (!storages.includes(data[i].storage)) {
+                data[i].title_color = stringToColor(data[i].storage);
                 $(storageId).append(Mustache.render(storageTemplate, data[i]));
                 storages.push(data[i].storage);
             }
