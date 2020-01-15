@@ -5,17 +5,17 @@ let db = new sqlite3.Database('./warehouse.db');
 let init = function() {
     db.run("DROP TABLE IF EXISTS ArticleType", function(err) {
         db.run("CREATE TABLE IF NOT EXISTS ArticleType (" +
-        "type_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+        "type_id INTEGER PRIMARY KEY," +
         "caption TEXT," +
         "image TEXT" +
         ")", function(err) {
-            db.run("INSERT INTO ArticleType (caption, image) VALUES ('Sweets', 'types_sweets.svg')");
-            db.run("INSERT INTO ArticleType (caption, image) VALUES ('Cereal', 'types_cereal.svg')");
-            db.run("INSERT INTO ArticleType (caption, image) VALUES ('Grain', 'types_grain.svg')");
-            db.run("INSERT INTO ArticleType (caption, image) VALUES ('Technology', 'types_technology.svg')");
-            db.run("INSERT INTO ArticleType (caption, image) VALUES ('Tools', 'types_tools.svg')");
-            db.run("INSERT INTO ArticleType (caption, image) VALUES ('Vegetables', 'types_vegetables.svg')");
-            db.run("INSERT INTO ArticleType (caption, image) VALUES ('Household', 'types_household.svg')");
+            db.run("INSERT INTO ArticleType (type_id, caption, image) VALUES (1, 'Sweets', 'types_sweets.svg')");
+            db.run("INSERT INTO ArticleType (type_id, caption, image) VALUES (2, 'Cereal', 'types_cereal.svg')");
+            db.run("INSERT INTO ArticleType (type_id, caption, image) VALUES (3, 'Grain', 'types_grain.svg')");
+            db.run("INSERT INTO ArticleType (type_id, caption, image) VALUES (4, 'Technology', 'types_technology.svg')");
+            db.run("INSERT INTO ArticleType (type_id, caption, image) VALUES (5, 'Tools', 'types_tools.svg')");
+            db.run("INSERT INTO ArticleType (type_id, caption, image) VALUES (6, 'Vegetables', 'types_vegetables.svg')");
+            db.run("INSERT INTO ArticleType (type_id, caption, image) VALUES (7, 'Household', 'types_household.svg')");
         });
     });
 
