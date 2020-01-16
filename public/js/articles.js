@@ -53,7 +53,6 @@ function populateStorages(data, callback) {
             data[i].type_image = getArticleType(data[i].type_id).image;
             $('#storage-' + data[i].storage + ' > .content').append(Mustache.render(articleTemplate, data[i]));
         }
-        callback();
     });
 }
 

@@ -25,17 +25,18 @@ const login = async (req, res) => {
 const logout = async (req, res) => {
     try {
         const token = req.header('Authorization').replace('Bearer ', '');
+        console.log("Logout " + token);
         for (let i = 0; i < tokens.length; i++) {
             if (tokens[i] == token) {
                 console.log("Removing token " + token);
                 tokens.splice(i, 1);
-                return req.status(200).send({
+                return res.status(200).send({
                     status: "Logout successful!"
                 });
             }
         }
     } catch (error) {
-        return req.status(400).send({
+        return res.status(400).send({
             error: "Token not found!"
         });
     }
@@ -60,7 +61,6 @@ const authenticate = async (req, res, next) => {
         });
     }
 };
-
 
 module.exports = {
     login: login,

@@ -7,5 +7,6 @@ router.use('/articles', require('./articleChangeRoutes'));
 router.use('/articles', require('./articleTypeRoutes'));
 
 router.post('/login', authentication.login);
+router.post('/logout', authentication.logout);
 
 module.exports = router;

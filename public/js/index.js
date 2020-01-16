@@ -33,6 +33,9 @@ $(document).ready(function () {
     }
 });
 
+/*
+    Setup AJAX to send authorization header with every request
+*/
 function setupAjaxHeader() {
     $.ajaxSetup({
         beforeSend: function(xhr) {
@@ -55,21 +58,38 @@ function setupCollapsible() {
 */
 function setupPageChangers() {
     $('a.warehouse').click(function () {
+        event.preventDefault(); 
         changePage("index");
     });
 
     $('a.report').click(function () {
+        event.preventDefault(); 
         changePage("reports");
     });
 
-    $('a.logout').click(function () {
+    $('a.logout').click(function (event) {
+        event.preventDefault();
         logout();
     });
 }
 
+/*
+    Logout the current logged-in token
+*/
 function logout() {
-    setCookie("token", "", .5);
-    window.location.href = "login.html";
+    let url = '/api/logout/';
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: {},
+        success: function (result) {
+            setCookie("token", "", .5);
+            window.location.href = "login.html";
+        }
+    }).fail(function () {
+        console.log("Could not log out token");
+        setCookie("token", "", .5);
+    });
 }
 
 /*
