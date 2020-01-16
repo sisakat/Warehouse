@@ -265,6 +265,11 @@ main.login {
     }
 }
 
+.error {
+    color: darkred;
+    font-weight: bold;
+}
+
 /* ======== Footer ======== */
 footer {
     margin: 0 auto;

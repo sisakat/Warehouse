@@ -5,7 +5,7 @@
 ***************************************** */
 
 function loadArticles() {
-    $.getJSON("/api/articles", articlesRetrieved);
+    $.getJSON("/api/articles/", articlesRetrieved);
 }
 
 function openArticle(id) {
@@ -13,8 +13,9 @@ function openArticle(id) {
 }
 
 function articlesRetrieved(data) {
-    createStorages(data);
-    populateStorages(data);
+    createStorages(data, function () {
+        populateStorages(data);
+    });
 }
 
 function detailArticleRetrieved(data) {
@@ -27,7 +28,7 @@ function detailArticleRetrieved(data) {
     });
 }
 
-function createStorages(data) {
+function createStorages(data, callback) {
     let storages = [];
     let storageId = '#storages';
     $(storageId).empty();
@@ -39,10 +40,11 @@ function createStorages(data) {
                 storages.push(data[i].storage);
             }
         }
+        callback();
     });
 }
 
-function populateStorages(data) {
+function populateStorages(data, callback) {
     getTemplate('template-article', function (articleTemplate) {
         for (let i = 0; i < data.length; i++) {
             $('#storage-' + data[i].storage + ' > .content').empty();
@@ -51,6 +53,7 @@ function populateStorages(data) {
             data[i].type_image = getArticleType(data[i].type_id).image;
             $('#storage-' + data[i].storage + ' > .content').append(Mustache.render(articleTemplate, data[i]));
         }
+        callback();
     });
 }
 

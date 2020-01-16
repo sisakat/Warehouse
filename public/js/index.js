@@ -6,8 +6,17 @@
 var previous_page = "";
 var page = "index";
 var first_load = true;
+var token = "";
+
 
 $(document).ready(function () {
+    token = getCookie("token");
+    if (token === "") {
+        window.location.href = "login.html";
+    }
+
+    setupAjaxHeader();
+
     getArticleTypes(function(types) {
         articleTypes = types;
             
@@ -23,6 +32,14 @@ $(document).ready(function () {
         });
     }
 });
+
+function setupAjaxHeader() {
+    $.ajaxSetup({
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+        }
+    });
+}
 
 /*
     Setup the collapsible elements with jQuery
@@ -44,6 +61,15 @@ function setupPageChangers() {
     $('a.report').click(function () {
         changePage("reports");
     });
+
+    $('a.logout').click(function () {
+        logout();
+    });
+}
+
+function logout() {
+    setCookie("token", "", .5);
+    window.location.href = "login.html";
 }
 
 /*

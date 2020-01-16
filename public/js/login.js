@@ -16,9 +16,10 @@ function login(password) {
         type: 'POST',
         data: data,
         success: function (result) {
-            alert(result.token)
+            setCookie("token", result.token, .5);
+            window.location.href = "index.html";
         }
     }).fail(function () {
-        alert('Login incorrect');
+        $(".error").html("Login incorrect");
     });
 }

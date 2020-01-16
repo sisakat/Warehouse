@@ -25,7 +25,7 @@ const login = async (req, res) => {
 const logout = async (req, res) => {
     try {
         const token = req.header('Authorization').replace('Bearer ', '');
-        for (let i = 0; i < tokens.length(); i++) {
+        for (let i = 0; i < tokens.length; i++) {
             if (tokens[i] == token) {
                 console.log("Removing token " + token);
                 tokens.splice(i, 1);
@@ -46,12 +46,15 @@ const authenticate = async (req, res, next) => {
         const token = req.header('Authorization').replace('Bearer ', '');
         const data = jwt.verify(token, key);
 
-        for (let i = 0; i < tokens.length(); i++) {
+        for (let i = 0; i < tokens.length; i++) {
             if (tokens[i] == token) {
-                next()
+                console.log("Authentication successful");
+                next();
+                break;
             }
         }
     } catch (error) {
+        console.log("Authentication failed: " + error);
         res.status(401).send({
             error: "Unauthorized"
         });
